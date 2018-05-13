@@ -42,3 +42,5 @@ while(True):
 cap2.release()
 cap3.release()
 cv2.destroyAllWindows()
+file = open('./'+dir+'/num.txt','w')
+file.write(str(i-1))
