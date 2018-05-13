@@ -1,0 +1,13 @@
+imageDir = fullfile('./images');
+leftImages = imageDatastore(fullfile(imageDir,'L'));
+rightImages = imageDatastore(fullfile(imageDir,'R'));
+[imagePoints,boardSize] = detectCheckerboardPoints(leftImages.Files,rightImages.Files);
+squareSizeInMillimeters = 34.5;
+worldPoints = generateCheckerboardPoints(boardSize,squareSizeInMillimeters);
+I1 = readimage(leftImages,1);
+I2 = readimage(rightImages,1);
+imageSize = [size(I1,1),size(I1,2)];
+stereoParams = estimateCameraParameters(imagePoints,worldPoints,'ImageSize',imageSize);
+[J1_full,J2_full] = rectifyStereoImages(I1,I2,stereoParams,'OutputView','full');
+figure;
+imshow(stereoAnaglyph(J1_full,J2_full));
