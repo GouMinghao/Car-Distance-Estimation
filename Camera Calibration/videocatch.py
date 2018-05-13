@@ -3,13 +3,13 @@ import time
 import cv2
 # cap1 = cv2.VideoCapture(0)
 
-cap2 = cv2.VideoCapture(1)
+cap2 = cv2.VideoCapture(0)
 cap2.set(cv2.CAP_PROP_FRAME_WIDTH,320)
 cap2.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
 cap3 = cv2.VideoCapture(2)
 cap3.set(cv2.CAP_PROP_FRAME_WIDTH,320)
 cap3.set(cv2.CAP_PROP_FRAME_HEIGHT,240)
-i = 40
+i = 1
 while(True):
 
     ret3, frame3 = cap3.read()
@@ -24,8 +24,8 @@ while(True):
         break
 
     if key & 0xFF == ord('c'):
-       cv2. imwrite('./catimages/R/'+str(i)+'.jpg',frame2)
-       cv2. imwrite('./catimages/L/'+str(i)+'.jpg',frame3)
+       cv2. imwrite('./Calibration Images More/R/'+str(i)+'.jpg',frame2)
+       cv2. imwrite('./Calibration Images More/L/'+str(i)+'.jpg',frame3)
        print(i)
        i += 1
 cap2.release()
