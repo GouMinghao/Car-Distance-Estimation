@@ -3,6 +3,9 @@ function genVideo(foldername)
     num = load(strcat('../Video/',foldername,'/num.txt'));
     load('../Integration/Data/Param.mat')
     detector = vision.CascadeObjectDetector('../Integration/data/carDetector2.xml');
+    myObj = VideoWriter(strcat('./',foldername,'/',foldername),'MPEG-4');%初始化一个avi文件
+    myObj.FrameRate = 10;
+    open(myObj);
     for n = 2 : num
         filename = num2str(n);
         I1 = imread(strcat('../Video/',foldername,'/L/',filename,'.jpg'));
@@ -80,5 +83,8 @@ function genVideo(foldername)
 
         imshow(detectedImg)
         imwrite(detectedImg,strcat('./',foldername,'/',num2str(n-1),'.jpg'));
+        writeVideo(myObj,detectedImg);
+
     end
+    close(myObj);
 end
