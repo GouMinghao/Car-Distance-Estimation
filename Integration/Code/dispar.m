@@ -18,12 +18,15 @@ function dispar(filenumber)
     end
 
     figure(1)
-    subplot(3,1,2)
-    imshow(d0/50)
-    subplot(3,1,1)
+    subplot(1,3,2)
+%     pcolor(d0)
+%     shading flat
+%     view(0,-90)
+    imshow(d0/10)
+    subplot(1,3,1)
     imshow(J1)
     title('left')
-    subplot(3,1,3)
+    subplot(1,3,3)
     imshow(J2)
     title('right')
 
